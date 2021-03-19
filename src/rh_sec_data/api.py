@@ -6,11 +6,19 @@ from requests import request
 logger = logging.getLogger(__name__)
 API_HOST = "https://access.redhat.com/hydra/rest/securitydata"
 
-COMMON_PARAMS = ['after', 'before', 'bug', 'created_days_ago', 'page', 'per_page', 'severity']
+COMMON_PARAMS = ["after", "before", "bug", "created_days_ago", "page", "per_page", "severity"]
 
-CVRF_PARAMS = COMMON_PARAMS + ['cve', 'package', 'rhsa_ids']
-CVE_PARAMS = COMMON_PARAMS + ['advisory', 'cvss3_score', 'cvss_score', 'cwe', 'ids', 'package', 'product']
-OVEL_PARAMS = COMMON_PARAMS + ['cve', 'rhsa_ids']
+CVRF_PARAMS = COMMON_PARAMS + ["cve", "package", "rhsa_ids"]
+CVE_PARAMS = COMMON_PARAMS + [
+    "advisory",
+    "cvss3_score",
+    "cvss_score",
+    "cwe",
+    "ids",
+    "package",
+    "product",
+]
+OVEL_PARAMS = COMMON_PARAMS + ["cve", "rhsa_ids"]
 OVALSTREAM_PARAMS = ["after", "label"]
 
 
@@ -42,8 +50,7 @@ def _validate_params(param_set, provided_params):
     for param in provided_params:
         if param not in param_set:
             raise ValueError(
-                f"'{param}' is not valid parameter.\n"
-                f"Applicable parameters are {param_set}"
+                f"'{param}' is not valid parameter.\n" f"Applicable parameters are {param_set}"
             )
 
 
