@@ -54,23 +54,25 @@ def _validate_params(param_set, provided_params):
             )
 
 
-def _validate_call(type, format, param_set, **kwargs):
+def _validate_call(search_type, format, param_set, **kwargs):
     _validate_params(param_set, kwargs.keys())
-    endpoint = type if format == "html" else f"{type}.{format}"
+    endpoint = search_type if format == "html" else f"{search_type}.{format}"
     return __call_api(endpoint=endpoint, **kwargs)
 
 
 def get_cvrf(format="json", **kwargs):
-    return _validate_call(type="cvrf", format=format, param_set=CVRF_PARAMS, **kwargs)
+    return _validate_call(search_type="cvrf", format=format, param_set=CVRF_PARAMS, **kwargs)
 
 
 def get_cve(format="json", **kwargs):
-    return _validate_call(type="cve", format=format, param_set=CVE_PARAMS, **kwargs)
+    return _validate_call(search_type="cve", format=format, param_set=CVE_PARAMS, **kwargs)
 
 
 def get_ovel(format="json", **kwargs):
-    return _validate_call(type="ovel", format=format, param_set=OVEL_PARAMS, **kwargs)
+    return _validate_call(search_type="ovel", format=format, param_set=OVEL_PARAMS, **kwargs)
 
 
 def get_ovelstream(format="json", **kwargs):
-    return _validate_call(type="ovelstream", format=format, param_set=OVALSTREAM_PARAMS, **kwargs)
+    return _validate_call(
+        search_type="ovelstream", format=format, param_set=OVALSTREAM_PARAMS, **kwargs
+    )
